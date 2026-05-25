@@ -3,20 +3,29 @@ import streamlit as st
 # ---- CONFIGURACIÓN DE LA PÁGINA ----
 st.set_page_config(page_title="Mi Primera App", page_icon="⚽", layout="centered")
 
-# ---- TRUCO PARA OCULTAR ELEMENTOS DE STREAMLIT ----
+# ---- CSS FORZADO PARA MÓVILES Y COMPUTADORAS ----
 hide_style = """
     <style>
-    /* Ocultar el botón de GitHub (Fork) en la esquina superior derecha */
-    .stAppDeployButton {visibility: hidden;}
+    /* Ocultar barra superior y botones de desarrollo */
+    header {visibility: hidden; display: none !important;}
+    .stAppDeployButton {visibility: hidden; display: none !important;}
     
-    /* Ocultar la barra de menú superior y el ícono de GitHub */
-    header {visibility: hidden;}
+    /* Ocultar TODO el contenedor de la barra de herramientas inferior (Mobile Toolbar) */
+    [data-testid="stStatusWidget"] {visibility: hidden; display: none !important;}
+    .stDecoration {display: none !important;}
     
-    /* Ocultar el pie de página de Streamlit de abajo */
-    footer {visibility: hidden;}
+    /* Apuntar a los botones flotantes del hosting de Streamlit en la esquina inferior */
+    div[data-testid="stConnectionStatus"] {id: hidden; display: none !important;}
+    iframe[title="Streamlit popover"] {display: none !important;}
+    footer {visibility: hidden; display: none !important;}
+    
+    /* Quitar espacios extra que deja la barra oculta */
+    .stAppToolbar {right: 0px; display: none !important;}
     </style>
 """
 st.markdown(hide_style, unsafe_allow_html=True)
+
+# ---- TU CÓDIGO NORMAL CONTINÚA AQUÍ ----
 
 # Título de la página web
 st.title("⚽ ¡Mi Primera App Interactiva!")
